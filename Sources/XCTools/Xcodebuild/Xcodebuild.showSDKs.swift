@@ -2,8 +2,8 @@ import Sh
 
 extension Xcodebuild {
 
-  public func showSDKs() throws -> [SDK] {
-    try sh([SDK].self, serializedCommand(action: "-showsdks -json"))
+  public func showSDKs() async throws -> [SDK] {
+    try await sh([SDK].self, serializedCommand(action: "-showsdks -json"))
   }
 
   public struct SDK: Decodable {

@@ -2,7 +2,7 @@ import Sh
 
 extension Xcodebuild {
 
-  public func exportArchive(_ sink: Sink = .terminal, archivePath: String, exportPath: String? = nil, exportOptionsPlistPath: String) throws {
+  public func exportArchive(_ sink: Sink = .terminal, archivePath: String, exportPath: String? = nil, exportOptionsPlistPath: String) async throws {
     var buffer = "xcrun xcodebuild -exportArchive -archivePath \(archivePath) -exportOptionsPlist \(exportOptionsPlistPath)"
 
     if let exportPath = exportPath {
@@ -17,6 +17,6 @@ extension Xcodebuild {
       buffer.append(" -allowProvisioningDeviceRegistration")
     }
 
-    try sh(sink, buffer)
+    try await sh(sink, buffer)
   }
 }

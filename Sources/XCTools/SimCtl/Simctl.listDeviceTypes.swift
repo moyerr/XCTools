@@ -2,9 +2,9 @@ import Sh
 
 extension Simctl {
 
-  public static func listDeviceTypes() throws -> [DeviceType] {
+  public static func listDeviceTypes() async throws -> [DeviceType] {
     let cmd = "xcrun simctl list -j devicetypes"
-    let deviceTypes = try sh(DeviceTypes.self, cmd)
+    let deviceTypes = try await sh(DeviceTypes.self, cmd)
     return deviceTypes.devicetypes
   }
 
@@ -32,12 +32,12 @@ extension Simctl {
         self.rawValue = stringLiteral
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: Encoder) async throws {
         var container = encoder.singleValueContainer()
         try container.encode(rawValue)
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: Decoder) async throws {
         let container = try decoder.singleValueContainer()
         self.rawValue = try container.decode(String.self)
       }

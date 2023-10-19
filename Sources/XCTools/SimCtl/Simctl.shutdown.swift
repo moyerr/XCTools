@@ -5,7 +5,7 @@ extension Simctl {
   /**
    Shutdown a device.
    */
-  public func shutdown(_ sink: Sink = .terminal) throws {
-    try sh(sink, "xcrun simctl shutdown '\(name)'")
+  public func shutdown(_ sink: Sink = .terminal) async throws {
+    try await sh(sink, "xcrun simctl shutdown '\(name)'")
   }
 }

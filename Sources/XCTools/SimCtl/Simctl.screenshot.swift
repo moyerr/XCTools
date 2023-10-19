@@ -6,7 +6,7 @@ extension Simctl {
                          path: String,
                          type: ScreenshotType = .png,
                          mask: ScreenshotMask? = nil,
-                         display: ScreenshotDisplay? = nil) throws {
+                         display: ScreenshotDisplay? = nil) async throws {
 
     var cmd = "xcrun simctl io '\(name)'"
     + " screenshot \(path)"
@@ -18,7 +18,7 @@ extension Simctl {
       cmd += " --display \(display.rawValue)"
     }
 
-    try sh(.terminal, cmd)
+    try await sh(.terminal, cmd)
   }
 
   public enum ScreenshotType: String {

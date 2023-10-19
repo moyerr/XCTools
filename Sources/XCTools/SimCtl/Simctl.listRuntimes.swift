@@ -2,9 +2,9 @@ import Sh
 
 extension Simctl {
 
-  public static func listRuntimes() throws -> [Runtime] {
+  public static func listRuntimes() async throws -> [Runtime] {
     let cmd = "xcrun simctl list -j runtimes"
-    let runtimes = try sh(Runtimes.self, cmd)
+    let runtimes = try await sh(Runtimes.self, cmd)
     return runtimes.runtimes
   }
 

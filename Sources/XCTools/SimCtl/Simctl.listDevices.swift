@@ -2,11 +2,11 @@ import Sh
 import Foundation
 
 extension Simctl {
-  public static func listDevices() throws -> [DeviceType.Identifier: [Device]] {
+  public static func listDevices() async throws -> [DeviceType.Identifier: [Device]] {
     let decoder = JSONDecoder()
     decoder.dateDecodingStrategy = .iso8601
 
-    let devices = try sh(Devices.self,
+    let devices = try await sh(Devices.self,
                          decodedBy: decoder,
                          "xcrun simctl list -j devices")
     return devices.deviceTypeIdsToDevices
