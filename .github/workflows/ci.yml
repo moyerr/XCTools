@@ -1,9 +1,10 @@
 name: CI
 
 on:
+  pull_request:
   push:
-    branches: "**"
-    pull_request:
+    branches:
+      - main
 
 jobs:
   build:
@@ -13,7 +14,7 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - os: macos-12
+          - os: macos-13
 
     steps:
       - run: swift --version
