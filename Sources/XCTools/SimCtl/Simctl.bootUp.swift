@@ -7,11 +7,11 @@ extension Simctl {
     - sink: where to send output
     - arch: specify the architecture to use when booting the simulator (eg: `arm64` or `x86_64`)
    */
-  public func bootUp(_ sink: Sink = .terminal, arch: String? = nil) throws {
+  public func bootUp(_ sink: Sink = .terminal, arch: String? = nil) async throws {
     var cmd = "xcrun simctl bootstatus '\(name)' -b"
     if let arch {
       cmd += " --arch '\(arch)'"
     }
-    try sh(sink, cmd)
+    try await sh(sink, cmd)
   }
 }

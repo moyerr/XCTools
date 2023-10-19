@@ -4,17 +4,17 @@ import Foundation
 extension Xcodebuild {
 
   /// Show available build destinations
-  public func showDestinations() throws -> [Destination] {
-    try showDestinations(all: false).available
+  public func showDestinations() async throws -> [Destination] {
+    try await showDestinations(all: false).available
   }
 
-  public func showAllDestinations() throws -> (available: [Destination], ineligible: [Destination]) {
-    try showDestinations(all: true)
+  public func showAllDestinations() async throws -> (available: [Destination], ineligible: [Destination]) {
+    try await showDestinations(all: true)
   }
 
-  private func showDestinations(all: Bool) throws -> (available: [Destination], ineligible: [Destination]) {
+  private func showDestinations(all: Bool) async throws -> (available: [Destination], ineligible: [Destination]) {
 
-    let output = try Process(cmd: serializedCommand(action: "-showdestinations"))
+    let output = try await Process(cmd: serializedCommand(action: "-showdestinations"))
       .runReturningAllOutput()
 
     if let terminationError = output.terminationError {

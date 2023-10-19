@@ -2,8 +2,8 @@ import Sh
 
 extension Xcodebuild {
   /// lists the targets and configurations in a project, or the schemes in a workspace
-  public func list() throws -> ProjectDescription {
-    try sh(ProjectDescription.self, serializedCommand(action: "-list -json"))
+  public func list() async throws -> ProjectDescription {
+    try await sh(ProjectDescription.self, serializedCommand(action: "-list -json"))
   }
 }
 

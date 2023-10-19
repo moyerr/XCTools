@@ -3,22 +3,22 @@ import XCTest
 
 final class SimctlTests: XCTestCase {
 
-  func testListDeviceTypes() throws {
-    let deviceTypes = try Simctl.listDeviceTypes()
+  func testListDeviceTypes() async throws {
+    let deviceTypes = try await Simctl.listDeviceTypes()
     XCTAssertGreaterThan(deviceTypes.count, 0)
   }
 
-  func testListDevices() throws {
-    let devices = try Simctl.listDevices()
+  func testListDevices() async throws {
+    let devices = try await Simctl.listDevices()
     XCTAssertGreaterThan(devices.count, 0)
   }
 
-  func testListRuntimes() throws {
-    let runtimes = try Simctl.listRuntimes()
+  func testListRuntimes() async throws {
+    let runtimes = try await Simctl.listRuntimes()
     XCTAssertGreaterThan(runtimes.count, 0)
   }
 
-  func testDeviceParsing() throws {
+  func testDeviceParsing() async throws {
 
     let sample = #"""
       {
@@ -41,7 +41,7 @@ final class SimctlTests: XCTestCase {
     XCTAssertEqual(device.name, "iPhone X 15.5")
   }
 
-  func testDevicesOutputDecoding() throws {
+  func testDevicesOutputDecoding() async throws {
     let decoder = JSONDecoder()
     decoder.dateDecodingStrategy = .iso8601
 

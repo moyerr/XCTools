@@ -1,7 +1,7 @@
 import Sh
 
 extension Xcodebuild {
-  public func test(_ sink: Sink = .terminal) throws {
-    try sh(sink, serializedCommand(action: "test"))
+  public func test(_ sink: Sink = .terminal) async throws {
+    try await sh(sink, serializedCommand(action: "test"))
   }
 }
