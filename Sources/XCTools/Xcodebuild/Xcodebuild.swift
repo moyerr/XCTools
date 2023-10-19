@@ -1,7 +1,7 @@
 import Sh
 import Foundation
 
-public final class Xcodebuild {
+public struct Xcodebuild {
 
   let project: String?
   let workspace: String?

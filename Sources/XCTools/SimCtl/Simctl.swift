@@ -1,6 +1,6 @@
 import Foundation
 
-public class Simctl {
+public struct Simctl {
   public let name: String
   public init(name: String) {
     self.name = name
