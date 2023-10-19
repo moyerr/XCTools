@@ -1,6 +1,6 @@
 import Sh
 
-public final class Altool {
+public struct Altool {
   let credential: AltoolCredential
 
   public init(credential: AltoolCredential) {
