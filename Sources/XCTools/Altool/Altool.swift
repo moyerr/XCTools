@@ -1,9 +1,9 @@
 import Sh
 
 public struct Altool {
-  let credential: AltoolCredential
+    let credential: any AltoolCredential
 
-  public init(credential: AltoolCredential) {
-    self.credential = credential
-  }
+    public init(credential: some AltoolCredential) {
+        self.credential = credential
+    }
 }

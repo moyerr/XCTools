@@ -1,18 +1,19 @@
-import Sh
 import Foundation
+import Sh
 
 extension Altool {
+    public func uploadApp(
+        _ sink: Sink = .terminal,
+        file: String,
+        platform: Platform,
+        transport: [Transport]? = nil
+    ) async throws {
+        var buffer = "xcrun altool --upload-app -f \(file) -t \(platform) \(credential.serialized)"
 
-  public func uploadApp(_ sink: Sink = .terminal, file: String, platform: Platform, transport: [Transport]? = nil) async throws {
+        if let transport {
+            buffer.append(transport.serialized)
+        }
 
-    var buffer = "xcrun altool \(credential.serialized) --upload-app -f \(file) -t \(platform)"
-
-    if let transport = transport {
-      buffer.append(transport.serialized)
+        try await sh(sink, buffer, environment: credential.environment)
     }
-
-    try await sh(sink,
-           buffer,
-           environment: self.credential.environment)
-  }
 }
