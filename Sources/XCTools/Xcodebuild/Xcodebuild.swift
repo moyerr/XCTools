@@ -11,6 +11,8 @@ public struct Xcodebuild {
     let arch: [String]?
     let sdk: String?
 
+    let quiet: Bool
+    let verbose: Bool
     let showBuildTimingSummary: Bool
     let enableThreadSanitizer: Bool?
     let enableUndefinedBehaviorSanitizer: Bool?
@@ -35,6 +37,8 @@ public struct Xcodebuild {
         configuraton: String? = nil,
         arch: [String]? = nil,
         sdk: String? = nil,
+        quiet: Bool = false,
+        verbose: Bool = false,
         showBuildTimingSummary: Bool = false,
         enableThreadSanitizer: Bool? = nil,
         enableUndefinedBehaviorSanitizer: Bool? = nil,
@@ -58,6 +62,8 @@ public struct Xcodebuild {
         self.configuraton = configuraton
         self.arch = arch
         self.sdk = sdk
+        self.quiet = quiet
+        self.verbose = verbose
         self.showBuildTimingSummary = showBuildTimingSummary
         self.enableThreadSanitizer = enableThreadSanitizer
         self.enableUndefinedBehaviorSanitizer = enableUndefinedBehaviorSanitizer
@@ -102,6 +108,14 @@ public struct Xcodebuild {
 
         if let sdk = sdk {
             buffer.append(" -sdk \(sdk)")
+        }
+
+        if quiet {
+            buffer.append(" -quiet")
+        }
+
+        if verbose {
+            buffer.append(" -verbose")
         }
 
         if showBuildTimingSummary {
