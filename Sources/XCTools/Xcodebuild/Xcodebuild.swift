@@ -82,7 +82,7 @@ public struct Xcodebuild {
     }
 
     func serializedCommand(action: String) -> String {
-        var buffer = "xcrun xcodebuild"
+        var buffer = "xcodebuild"
 
         if let project = project {
             buffer.append(" -project \(project)")
