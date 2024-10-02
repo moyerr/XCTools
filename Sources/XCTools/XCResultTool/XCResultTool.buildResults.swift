@@ -3,12 +3,9 @@ import Sh
 
 extension XCResultTool {
     public func buildResuts() async throws -> BuildResults {
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .secondsSince1970
-
         let command = serializeCommand("build-results")
 
-        return try await sh(BuildResults.self, decodedBy: decoder, command)
+        return try await sh(BuildResults.self, decodedBy: Self.decoder, command)
     }
 
     public struct BuildResults: Codable, Hashable, Sendable {

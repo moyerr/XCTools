@@ -1,6 +1,13 @@
 import Foundation
 
 public struct XCResultTool {
+
+    internal static let decoder: JSONDecoder = {
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .secondsSince1970
+        return decoder
+    }()
+
     /// The result bundle path.
     public let path: String
 
