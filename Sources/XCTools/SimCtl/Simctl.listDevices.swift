@@ -16,7 +16,7 @@ extension Simctl {
     public let lastBootedAt: Date?
     public let availabilityError: String?
     public let dataPath: String
-    public let dataPathSize: Int
+    public let dataPathSize: Int?
     public let logPath: String
     public let logPathSize: Int?
     public let udid: UUID
